@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<head>
+<link rel="stylesheet" type="text/css" href="stylesheet.css">
+<link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+<script src="https://code.jquery.com/jquery-2.1.3.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.7.0/underscore-min.js"></script>
+<script src="model.js"></script>
+<script src="cookingapp.js"></script>
+
+
+</head>
+
+<body>
+
+<h1>My Recipe Book Webapp!!</h1>
+
+<ul class ="nav nav-tabs">
+	<li role="presentation" class="active" id="hometab"><a href="#">Home</a></li>
+	<li role="presentation" id="addrecipetab"><a href="#">Add Recipe</a></li>
+	<li role="presentation" id="viewrecipetab"><a href="#">View Recipes</a></li>
+</ul>
+
+
+<div id="homepage">Hello World</div>
+
+
+<div id="addrecipe" class="nodisplay">
+	<div class="col-lg-6">
+    	<div class="input-group">
+      		<input type="text" class="form-control" placeholder="url of recipe..." id="webURL">
+      		<span class="input-group-btn">
+        		<button class="btn btn-default" type="button" id="inputWebRecipeBtn">Go!</button>
+      		</span>
+    	</div><!-- /input-group -->
+  	</div><!-- /.col-lg-6 -->
+
+</div>
+
+
+<div id="viewrecipes" class="nodisplay">
+	<div class="panel-group" id="recipeList" role="tablist" aria-multiselectable="true" >
+
+	</div>
+
+</div>
+
+
+</body>
