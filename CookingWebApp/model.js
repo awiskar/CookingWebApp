@@ -1,12 +1,12 @@
 var recipeList;
 
-var Recipe = function(name, ingredients, directions, url) {
+var Recipe = function(name, ingredients, directions, url, templateHTML) {
 	this.recipeName = name;
 	this.recipeNameNoSpace = this.recipeName.replace(/\s/g, "");
 	this.ingredients = ingredients;
 	this.directions = directions;
 	this.url = url;
-	this.templatHTML ="";
+	this.templateHTML = "";
 };
 
 _.extend(Recipe.prototype, {
@@ -52,6 +52,9 @@ _.extend(RecipeModel.prototype, {
 	addRecipe: function(recipe) {
 		this.recipes.push(recipe);
 		recipe.render();
+
+
+    localStorage.setItem("$"+recipe.recipeName, JSON.stringify(recipe));
 
 	},
 

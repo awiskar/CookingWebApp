@@ -15,6 +15,20 @@ window.addEventListener('load', function() {
 	var addWebRecipeBtn = document.getElementById("inputWebRecipeBtn");
 	var myRecipeModel = new RecipeModel();
 
+	for (var recipeName in localStorage) {
+		if (recipeName[0] == "$") {
+			var recipe = JSON.parse(localStorage[recipeName])		
+			console.log(recipe);
+			recipe = new Recipe(recipe["recipeName"],
+								recipe["ingredients"],
+								recipe["directions"],
+								recipe["url"],
+								recipe["templateHTML"]);
+
+			myRecipeModel.addRecipe(recipe);
+		};
+	};
+
 	addWebRecipeBtn.addEventListener('click', function(){
 		var recipeURL = document.getElementById("webURL").value;
 		var getRecipePage = jQuery.get(recipeURL, {}, function(response){
