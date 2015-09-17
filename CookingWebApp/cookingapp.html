@@ -26,6 +26,7 @@
 
 
 <div id="addrecipe" class="nodisplay">
+	<h2>Type url of recipe you want to add:</h2><br>
 	<div class="col-lg-6">
     	<div class="input-group">
       		<input type="text" class="form-control" placeholder="url of recipe..." id="webURL">
@@ -34,6 +35,37 @@
       		</span>
     	</div><!-- /input-group -->
   	</div><!-- /.col-lg-6 -->
+  	<br>
+  	<br>
+  	<h2>Input your own recipe</h2>
+  	<div class="input-group">
+  		<span class="input-group-addon" id="bassic-addon1">Recipe Title</span>
+  		<input type="text" class="form-control" placeholder="Recipe Title Here" aria-describedby="bassic-addon1" id="customRecipeTitle">
+  	</div>
+  	<h3>Ingredients</h3>
+  	<div id="ingredientsList">
+		<div class="input-group" id="ingredient1group">
+		  	<span class="input-group-addon" id="basic-addon2">Ingredient 1</span>
+			<input type="text" class="form-control ingredientsInput" placeholder="Ingredient 1 goes here" aria-describedby="bassic-addon2" id="ingredient1">
+	  	</div>
+  	</div>
+  	
+
+  	<button type="button" class="btn btn-default" id="addIngredientsBtn">Add Another Ingredient</button>
+
+  	<h3>Directions</h3>
+  	<div id="directionsList">
+  		<div class="input-group" id="direction1group">
+		  	<span class="input-group-addon" id="basic-addon2">Step 1</span>
+			<input type="text" class="form-control directionsInput" placeholder="Step 1 goes here" aria-describedby="bassic-addon2" id="direction1">
+	  	</div>
+  	</div> 
+
+  	<button type="button" class="btn btn-default" id="addDirectionsBtn">Add Another Step</button>
+
+  	<div>
+  		<button type="button" class="btn btn-default" id="submitRecipeBtn">Add Recipe</button>
+  	</div>
 
 </div>
 

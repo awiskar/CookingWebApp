@@ -49,6 +49,122 @@ window.addEventListener('load', function() {
 	});
 
 
+	var addIngredientsBtn = document.getElementById("addIngredientsBtn");
+	var customIngredientsList = $('#ingredientsList');
+	var ingTemplateHTML = "";
+	var i = 1;
+
+	var ingredientsInputClass = $(".ingredientsInput");
+
+	var addIngredientField = function() {
+		ingTemplateHTML = "";
+		i = i+1;
+		ingTemplateHTML = "<div class=\"input-group\" id=\"ingredient"+i+"group\">"+
+		"<span class=\"input-group-addon\" id=\"basic-addon"+(i+1)+"\">Ingredient "+i+"</span>"+
+		"<input type=\"text\" class=\"form-control ingredientsInput\" placeholder=\"Ingredient "+i+" goes here\" aria-describedby=\"bassic-addon"+(i+1)+"\" id=\"ingredient"+i+"\">"+
+		"</div>";
+		var newListItem = $(ingTemplateHTML);
+		customIngredientsList.append(newListItem);
+		newListItem.children()[1].focus();
+		newListItem.keypress(function(e){
+			if(e.which === 13) {
+				addIngredientField();
+			}
+		});
+	};
+
+	addIngredientsBtn.addEventListener('click', function(){
+		addIngredientField();
+
+	});
+
+	ingredientsInputClass.keypress(function(e) {
+		if (e.which === 13) {
+			addIngredientField();
+		}
+	});
+
+	var addDirectionsBtn = document.getElementById("addDirectionsBtn");
+	var customDirectionsList = $('#directionsList');
+	var dirTemplateHTML = "";
+	var o = 1;
+
+	var directionsInputClass = $(".directionsInput");
+
+	var addDirectionStep = function() {
+		dirTemplateHTML = "";
+		o = o+1;
+		dirTemplateHTML = "<div class=\"input-group\" id=\"direction"+o+"group\">"+
+		  	"<span class=\"input-group-addon\" id=\"basic-addon"+(o+1)+"\">Step "+o+"</span>"+
+			"<input type=\"text\" class=\"form-control directionsInput\" placeholder=\"Step "+o+" goes here\" aria-describedby=\"bassic-addon"+(o+1)+"\" id=\"direction"+o+"\">"+
+	  	"</div>";
+
+	  	var newListItem = $(dirTemplateHTML);
+
+	  	customDirectionsList.append(newListItem);
+	  	newListItem.children()[1].focus();
+	  	newListItem.keypress(function(e) {
+			if (e.which === 13) {
+				addDirectionStep();
+			}
+		});
+	};
+
+	addDirectionsBtn.addEventListener('click', function(){
+		addDirectionStep();
+	});
+
+
+	directionsInputClass.keypress(function(e) {
+		if (e.which === 13) {
+			addDirectionStep();
+		}
+	});
+
+	var submitRecipeBtn = document.getElementById("submitRecipeBtn");
+
+	submitRecipeBtn.addEventListener('click', function(){
+		var recipeTitle = document.getElementById("customRecipeTitle").value;
+		var ingredients = [];
+		var directions = [];
+		var url = "";
+		var ingredientsGroup = document.getElementById("ingredientsList");
+		var directionsGroup = document.getElementById("directionsList");
+		var nodeOfInterest;
+		if (recipeTitle === "Recipe Title Goes Here" || recipeTitle === "") {
+			alert("Recipe must have a title to add it to your recipe box");
+			return;
+		}
+		_.each(ingredientsGroup.children, function(node){
+			nodeOfInterest = node.children[1].value;
+			if (nodeOfInterest !== "" && nodeOfInterest.split(" ")[0] !== "Ingredient" ) {
+				ingredients.push(nodeOfInterest);
+			}
+			
+		});
+
+
+		_.each(directionsGroup.children, function(node){
+			nodeOfInterest = node.children[1].value;
+			if (nodeOfInterest !== "" && nodeOfInterest.split(" ")[0] !== "Step") {
+				directions.push(nodeOfInterest);
+			}
+		});
+
+		var newRecipe = new Recipe(recipeTitle, ingredients, directions, url);
+		myRecipeModel.addRecipe(newRecipe);
+
+		customIngredientsList.children().not('first').remove();
+		customIngredientsList.append("<div class=\"input-group\" id=\"ingredient1group\"><span class=\"input-group-addon\" id=\"basic-addon2\">Ingredient 1</span><input type=\"text\" class=\"form-control\" placeholder=\"Ingredient 1 goes here\" aria-describedby=\"bassic-addon2\" id=\"ingredient1\"></div>");
+		i = 1;
+		o = 1;
+
+		customDirectionsList.children().not('first').remove();
+		customDirectionsList.append("<div class=\"input-group\" id=\"direction1group\"><span class=\"input-group-addon\" id=\"basic-addon2\">Step 1</span><input type=\"text\" class=\"form-control directionsInput\" placeholder=\"Step 1 goes here\" aria-describedby=\"bassic-addon2\" id=\"direction1\"></div>");
+
+		$("#customRecipeTitle").val("");
+
+	});
 
 
 
