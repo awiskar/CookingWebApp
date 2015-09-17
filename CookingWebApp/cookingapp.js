@@ -18,7 +18,6 @@ window.addEventListener('load', function() {
 	for (var recipeName in localStorage) {
 		if (recipeName[0] == "$") {
 			var recipe = JSON.parse(localStorage[recipeName])		
-			console.log(recipe);
 			recipe = new Recipe(recipe["recipeName"],
 								recipe["ingredients"],
 								recipe["directions"],
